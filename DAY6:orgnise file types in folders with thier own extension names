@@ -1,0 +1,35 @@
+
+
+
+const fs = require('fs')
+const fsp= require('fs/promises')
+const path = require('path')
+
+const files = fs.readdir(__dirname,(err,files)=>{
+    console.log(files)
+    files.map((file)=>{
+        let ext = path.extname(file)
+        console.log(ext)
+        let dirName = ext.split("").slice(1).join("")
+        console.log(dirName);
+        if(fs.existsSync(dirName)){
+            console.log(`${dirName} exists`)
+            if(dirName !== 'js' && dirName!=='json' ){ 
+                fsp.rename(file,path.join(dirName,file)) 
+    
+                 
+            }
+        }else{
+           
+            if(dirName !== 'js' && dirName!=='json' ){ 
+                fsp.mkdir(dirName)
+
+                fsp.rename(file,path.join(dirName,file)) 
+    
+                
+            }        } 
+
+    
+        
+    })
+})
