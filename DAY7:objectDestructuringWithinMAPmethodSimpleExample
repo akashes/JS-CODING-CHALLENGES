@@ -1,0 +1,34 @@
+
+
+let emp={
+    Alan:{
+        age:27,
+        online:false
+    },
+    akash:{
+        age:23,
+        online:true
+    },
+    arun:{
+        age:24,
+        online:false
+    }
+}
+
+const list = document.getElementById('list')
+function returnProperties(obj){
+    Object.entries(emp).map(([name,{age,online}])=>{
+        const listItem = document.createElement('li')
+   console.log(listItem)
+   
+//    online?listItem.style.color='green':list.style.color='orange'
+   listItem.innerHTML=`${name} : ${age}`
+   listItem.className=online?'online':'offline'
+    list.append(listItem)
+})
+
+
+
+}
+
+console.log(returnProperties(emp))
