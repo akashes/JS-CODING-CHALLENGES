@@ -21,6 +21,8 @@ function awardPrizes(obj){
             break;
 
             case bronze:return [name,'bronze']
+            break;
+           default: return[name,'participation']
         }
     })
     //converting array of key value pairs to object
