@@ -1,0 +1,65 @@
+
+// Q: ENCODE NAME TO NEW FORMAT . IF THE NAME CONTAINS LETTERS OTHER THAN SMALL LETTERS OR MORE THAN 9 LETTERS MUST LOG FAILED MESSAGE OTHER WISE DO this
+// 1. INPUT - helenfeda  ---> OUTPUT -  fnefeb8e12
+// FIRST THREE LETTERS SHOULD BE REVERSE OF 4,5AND6TH LETTERS
+// SECOND THREE LETTERS SHOULD BE ONE LETTER GREATER THAN LAST THREE LETTEERS EG: X->yield
+// FOR LAST THREE LETTERS FIRST AND THIRD LETTER SHOULD BE CHARACTER VALUE OF 1ST AND 3RD LETTERS AND SECOND LETTER AS IT IS
+
+
+function isLowerCaseOnly(input){
+    let regex =/^[a-z]+$/g
+   return regex.test(input)
+
+}
+
+
+
+function convertSets(set){
+    let [firstLetter,middleLetter,thirdLetter]= set.split("")
+    let firstLetterCode = firstLetter.charCodeAt()-96
+    // console.log(firstLetterCode)
+    let thirdLetterCode = thirdLetter.charCodeAt()-96
+    // console.log(thirdLetterCode)
+   return  result =[firstLetterCode, middleLetter,thirdLetterCode]
+
+}
+
+
+
+
+function secretEncode(input){
+
+    if(!isLowerCaseOnly(input) || input.length >9){
+        console.log('failed')
+        return -1
+
+
+    } 
+
+        let [firstSet,secondSet,thirdSet]= input.match(/.{1,3}/g)
+       const firstSetResult= convertSets(firstSet)
+ 
+       let reversedSecondSet=secondSet.split("").reverse()
+
+       let thirdSetResult=thirdSet.split("").map((letter)=>{
+        if(letter=='z') return 'a'
+        
+
+            return  String.fromCharCode( letter.charCodeAt()+1)
+
+        
+       })
+
+
+       let result =[...reversedSecondSet,...thirdSetResult,...firstSetResult].join("")
+
+       
+console.log(result)
+
+      
+
+   
+}
+
+
+secretEncode('helenfeda')
