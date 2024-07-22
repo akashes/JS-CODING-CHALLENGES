@@ -1,0 +1,31 @@
+console.log(awardPrizes({
+    "Joshua":45,
+    "Alex":39,
+    "Eric":43
+})
+)
+
+
+function awardPrizes(obj){
+//getting valuse only using Object.values and sorting it ,then desttructuring it
+    const[gold,silver,bronze]= Object.values(obj).sort((a,b)=>b-a)
+
+
+    //taking key value pairs as matching values with gold,.....,... values and returning each new key value pair(important)
+    let values=Object.entries(obj).map(([name,score])=>{
+        switch(score){
+            case gold : return [name,'gold']
+            break;
+
+            case silver:return [name,'silver']
+            break;
+
+            case bronze:return [name,'bronze']
+        }
+    })
+    //converting array of key value pairs to object
+    let result =Object.fromEntries(values)
+    return result
+
+}
+
